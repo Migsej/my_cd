@@ -1,0 +1,8 @@
+12,1712740191,/home/vincent
+15,1712779576,/home/vincent/my_cd
+3,1712772153,/home/vincent/ictf
+1,1712337236,/home/vincent/ictf/protected
+3,1712779573,/home/vincent/swamp
+3,1712685137,/home/vincent/ictf/flagetter
+1,1712740193,/home/vincent/geekctf
+1,1712772163,/home/vincent/ictf/moon
