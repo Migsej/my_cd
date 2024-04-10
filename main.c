@@ -48,8 +48,7 @@ struct entry get_entry(char *line) {
 	}
 	char *path_start = strchr(time_start+1, ',')+1;
 	int length = strlen(path_start);
-	result.path = malloc(length -1 * sizeof(char));
-	memcpy(result.path, path_start, length - 1);
+	result.path = strndup(path_start, length);
 	result.path_len = length;
 	return result;
 }
@@ -111,6 +110,7 @@ int get_all_matches(int n, char **words) {
 	sprintf(command,fzf , all_paths);
 	system(command);	
   fclose(file);
+	free(line);
 	return 1;
 }
 
@@ -135,7 +135,7 @@ int main(int argc, char *argv[]) {
 	}
   char *result_path = get_best_match(argc-1,argv+1);
   assert(result_path != NULL);
-  printf("%s", result_path);
+  printf("%s\n", result_path);
   free(result_path);
   return 0;
 }
