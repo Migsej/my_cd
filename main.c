@@ -77,6 +77,12 @@ char *get_best_match(int n, char **words) {
   free(line);
   return best.path;
 }
+void exec_fzf(char *data, size_t len) {
+	FILE *program = popen("fzf", "w");
+	fwrite(data, sizeof(*data), len, program);
+	fclose(program);
+
+}
 
 int get_all_matches(int n, char **words) {
   FILE *file = fopen(DB_PATH, "r");
@@ -105,10 +111,7 @@ int get_all_matches(int n, char **words) {
 		*(end-1) = '\n';
 		free(matches[i].path);
 	}
-	char fzf[] = "echo '%s' | fzf";
-	char command[sizeof(fzf) - 2 + all_paths_len];
-	sprintf(command,fzf , all_paths);
-	system(command);	
+	exec_fzf(all_paths, all_paths_len);
   fclose(file);
 	free(line);
 	return 1;
