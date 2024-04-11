@@ -23,12 +23,12 @@ struct entry {
 
 int match(int n, char **words, char *line) {
 	assert(line != NULL);
-    for (int i = 0; i < n; i++) {
-      if (NULL == strstr(line, words[i])) {
-				return 0;
-      }
-    }
-		return 1;
+	char *pointer = line;
+	for (int i = 0; i < n; i++) {
+		pointer = strstr(pointer, words[i]);
+		if (NULL == pointer) return 0;
+	}
+	return 1;
 }
 
 struct entry get_entry(char *line) {
